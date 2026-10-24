@@ -1,0 +1,377 @@
+/home/npg2887/.local/lib/python3.10/site-packages/torch/cuda/__init__.py:228: UserWarning: CUDA initialization: The NVIDIA driver on your system is too old (found version 12080). Please update your GPU driver by downloading and installing a new version from the URL: http://www.nvidia.com/Download/index.aspx Alternatively, go to: https://pytorch.org to install a PyTorch version that has been compiled with your version of the CUDA driver. (Triggered internally at /__w/pytorch/pytorch/c10/cuda/CUDAFunctions.cpp:119.)
+  return torch._C._cuda_getDeviceCount() > 0
+Random seed set to 2026
+Using CPU
+Created run directory: /projects/e32998/MIL_training/final_runs/run_20261020_115803
+================================================================================
+HIERARCHICAL ATTENTION MIL TRAINING
+================================================================================
+Arguments: {'labels_csv': '/projects/e32998/STAT390_Krish/Code/Code4_reduce_runtime/extra_benign_case_grade_match.csv', 'patches_dir': '/projects/e32998/patches_benign_split', 'epochs': 2, 'lr': 0.000208, 'batch_size': 1, 'num_workers': 2, 'embed_dim': 512, 'per_slice_cap': 800, 'max_slices_per_stain': None, 'seed': 2026, 'resume': None, 'eval_only': False, 'analyze_attention': False, 'attention_top_n': 5, 'load_splits': '/gpfs/projects/e32998/STAT390_Fall2026/Team2_TheConsultancy/Alyssa_Presentation1_base_code/data_splits_new_01.npz', 'checkpoint_dir': '/projects/e32998/MIL_training/final_runs/run_20261020_115803/checkpoints'}
+Training config (may be overridden by arguments): {'epochs': 30, 'batch_size': 1, 'learning_rate': 0.000208, 'weight_decay': 0.000305, 'num_workers': 2, 'pin_memory': True, 'random_state': 42, 'class_weights': [2.5285, 1.0], 'dropout': 0.2599, 'use_scheduler': True, 'scheduler_type': 'reduce_on_plateau', 'scheduler_patience': 4, 'scheduler_factor': 0.2139, 'scheduler_min_lr': 1e-06, 'early_stopping': True, 'early_stopping_patience': 8, 'early_stopping_min_delta': 0.001, 'early_stopping_min_epochs': 10, 'use_patch_entropy_regularization': True, 'patch_entropy_lambda': 0.001, 'patch_entropy_mode': 'max', 'patch_entropy_eps': 1e-08, 'normalize_patch_entropy': True}
+============================================================
+PREPARING DATA
+============================================================
+Loaded 118 labels
+Found 83630 patch files
+All 3808 non-standard file names were handled.
+Grouped into 383 slices
+Mapped 371 slices to classes
+Class distribution: {1: 238, 0: 133}
+
+----------------------------------------
+SPLITTING DATA
+----------------------------------------
+Loading existing splits from: /gpfs/projects/e32998/STAT390_Fall2026/Team2_TheConsultancy/Alyssa_Presentation1_base_code/data_splits_new_01.npz
+Data splits loaded from: /gpfs/projects/e32998/STAT390_Fall2026/Team2_TheConsultancy/Alyssa_Presentation1_base_code/data_splits_new_01.npz
+Loaded splits - Train: 228, Val: 75, Test: 68
+Cases per split: 57 18 18
+Paths per split: 50394 14723 14924
+No leakage between train & val (cases).
+No leakage between train & test (cases).
+No leakage between val & test (cases).
+No leakage between train & val (paths).
+No leakage between train & test (paths).
+No leakage between val & test (paths).
+
+Data Summary:
+==================================================
+
+Label distribution per split:
+label   0   1
+split        
+test    7  11
+train  21  36
+val     7  11
+
+Mean patches per stain per split:
+       h&e_patches  melan_patches  sox10_patches
+split                                           
+test         396.3          229.2          203.6
+train        461.2          235.3          187.6
+val          348.1          249.0          220.9
+
+Median patches per stain per split:
+       h&e_patches  melan_patches  sox10_patches
+split                                           
+test         308.0          189.5          166.5
+train        348.0          192.0          137.0
+val          284.0          152.0          154.5
+
+Missing stain proportion:
+       h&e_missing  melan_missing  sox10_missing
+split                                           
+test           0.0          0.000          0.000
+train          0.0          0.018          0.035
+val            0.0          0.056          0.000
+
+Total cases: 93
+Total patches: 80,041
+==================================================
+
+Patch count by class for Train:
+  Benign (0):     16740 patches
+  High-grade (1): 33654 patches
+
+Patch count by class for Validation:
+  Benign (0):     3226 patches
+  High-grade (1): 11497 patches
+
+Patch count by class for Test:
+  Benign (0):     5814 patches
+  High-grade (1): 9110 patches
+
+Data Integrity Check for Train:
+Stain coverage:
+  h&e: 57/57 (100.0%)
+  melan: 56/57 (98.2%)
+  sox10: 55/57 (96.5%)
+No issues found
+
+Data Integrity Check for Validation:
+Stain coverage:
+  h&e: 18/18 (100.0%)
+  sox10: 18/18 (100.0%)
+  melan: 17/18 (94.4%)
+No issues found
+
+Data Integrity Check for Test:
+Stain coverage:
+  h&e: 18/18 (100.0%)
+  melan: 18/18 (100.0%)
+  sox10: 18/18 (100.0%)
+No issues found
+Using existing splits from: /gpfs/projects/e32998/STAT390_Fall2026/Team2_TheConsultancy/Alyssa_Presentation1_base_code/data_splits_new_01.npz
+
+============================================================
+CREATING DATA LOADERS (POOLED FEATURES)
+============================================================
+Created data loaders - Train: 57, Val: 18, Test: 18
+
+============================================================
+CREATING MODEL
+============================================================
+
+Model Summary:
+==================================================
+Total parameters: 2,493,061
+Trainable parameters: 2,493,061
+Model size: 9.51 MB
+==================================================
+
+============================================================
+TRAINING MODEL
+============================================================
+Starting training from epoch 1 to 2
+Device: cpu
+Model parameters: 2,493,061
+LR scheduler: ReduceLROnPlateau
+Patch entropy regularization enabled (lambda=0.001, mode=max, normalize=True) -> maximize entropy (smoother attention)
+Early stopping enabled (patience=8, min_delta=0.001, min_epochs=10)
+
+Epoch 1/2 (LR: 2.08e-04)
+
+Training:   0%|          | 0/57 [00:00<?, ?it/s]/home/npg2887/.local/lib/python3.10/site-packages/torch/utils/data/dataloader.py:1102: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+  super().__init__(loader)
+
+Training:   2%|▏         | 1/57 [00:12<11:29, 12.31s/it]
+Training:   4%|▎         | 2/57 [00:28<13:29, 14.72s/it]
+Training:   5%|▌         | 3/57 [00:37<10:38, 11.83s/it]
+Training:   7%|▋         | 4/57 [00:43<08:31,  9.65s/it]
+Training:   9%|▉         | 5/57 [00:57<09:48, 11.33s/it]
+Training:  11%|█         | 6/57 [01:03<07:54,  9.31s/it]
+Training:  12%|█▏        | 7/57 [01:05<05:57,  7.15s/it]
+Training:  14%|█▍        | 8/57 [01:19<07:34,  9.27s/it]
+Training:  16%|█▌        | 9/57 [01:34<08:55, 11.15s/it]
+Training:  18%|█▊        | 10/57 [01:41<07:36,  9.72s/it]
+Training:  19%|█▉        | 11/57 [01:57<08:59, 11.73s/it]
+Training:  21%|██        | 12/57 [02:45<17:00, 22.67s/it]
+Training:  23%|██▎       | 13/57 [02:51<12:54, 17.59s/it]
+Training:  25%|██▍       | 14/57 [03:04<11:32, 16.11s/it]
+Training:  26%|██▋       | 15/57 [03:07<08:38, 12.34s/it]
+Training:  28%|██▊       | 16/57 [03:14<07:22, 10.79s/it]
+Training:  30%|██▉       | 17/57 [03:22<06:30,  9.77s/it]
+Training:  32%|███▏      | 18/57 [03:38<07:34, 11.64s/it]
+Training:  33%|███▎      | 19/57 [03:42<05:54,  9.32s/it]
+Training:  35%|███▌      | 20/57 [04:11<09:30, 15.41s/it]
+Training:  37%|███▋      | 21/57 [04:22<08:19, 13.87s/it]
+Training:  39%|███▊      | 22/57 [04:43<09:29, 16.28s/it]
+Training:  40%|████      | 23/57 [05:06<10:13, 18.06s/it]
+Training:  42%|████▏     | 24/57 [05:10<07:44, 14.08s/it]
+Training:  44%|████▍     | 25/57 [05:26<07:43, 14.48s/it]
+Training:  46%|████▌     | 26/57 [05:32<06:08, 11.90s/it]
+Training:  47%|████▋     | 27/57 [05:49<06:44, 13.49s/it]
+Training:  49%|████▉     | 28/57 [05:55<05:27, 11.30s/it]
+Training:  51%|█████     | 29/57 [06:01<04:31,  9.68s/it]
+Training:  53%|█████▎    | 30/57 [06:24<06:10, 13.71s/it]
+Training:  54%|█████▍    | 31/57 [06:37<05:46, 13.35s/it]
+Training:  56%|█████▌    | 32/57 [06:59<06:37, 15.91s/it]
+Training:  58%|█████▊    | 33/57 [07:05<05:14, 13.12s/it]
+Training:  60%|█████▉    | 34/57 [07:08<03:53, 10.17s/it]
+Training:  61%|██████▏   | 35/57 [07:19<03:46, 10.30s/it]
+Training:  63%|██████▎   | 36/57 [07:22<02:50,  8.11s/it]
+Training:  65%|██████▍   | 37/57 [07:32<02:51,  8.59s/it]
+Training:  67%|██████▋   | 38/57 [07:34<02:05,  6.61s/it]
+Training:  68%|██████▊   | 39/57 [07:40<01:57,  6.52s/it]
+Training:  70%|███████   | 40/57 [07:46<01:49,  6.45s/it]
+Training:  72%|███████▏  | 41/57 [08:01<02:23,  8.96s/it]
+Training:  74%|███████▎  | 42/57 [08:08<02:04,  8.31s/it]
+Training:  75%|███████▌  | 43/57 [08:16<01:56,  8.34s/it]
+Training:  77%|███████▋  | 44/57 [08:23<01:42,  7.91s/it]
+Training:  79%|███████▉  | 45/57 [08:26<01:14,  6.22s/it]
+Training:  81%|████████  | 46/57 [08:33<01:13,  6.70s/it]
+Training:  82%|████████▏ | 47/57 [08:41<01:09,  6.97s/it]
+Training:  84%|████████▍ | 48/57 [08:50<01:07,  7.52s/it]
+Training:  86%|████████▌ | 49/57 [08:57<00:59,  7.39s/it]
+Training:  88%|████████▊ | 50/57 [09:07<00:57,  8.14s/it]
+Training:  89%|████████▉ | 51/57 [09:12<00:42,  7.14s/it]
+Training:  91%|█████████ | 52/57 [09:15<00:29,  5.93s/it]
+Training:  93%|█████████▎| 53/57 [09:19<00:21,  5.35s/it]
+Training:  95%|█████████▍| 54/57 [09:28<00:19,  6.62s/it]
+Training:  96%|█████████▋| 55/57 [09:39<00:15,  7.73s/it]
+Training:  98%|█████████▊| 56/57 [09:47<00:07,  7.87s/it]
+Training: 100%|██████████| 57/57 [09:50<00:00,  6.47s/it]
+                                                         
+
+Validating:   0%|          | 0/18 [00:00<?, ?it/s]
+Validating:   6%|▌         | 1/18 [00:05<01:28,  5.20s/it]
+Validating:  11%|█         | 2/18 [00:09<01:10,  4.44s/it]
+Validating:  17%|█▋        | 3/18 [00:13<01:04,  4.33s/it]
+Validating:  22%|██▏       | 4/18 [00:32<02:24, 10.32s/it]
+Validating:  28%|██▊       | 5/18 [00:35<01:37,  7.53s/it]
+Validating:  33%|███▎      | 6/18 [00:37<01:07,  5.58s/it]
+Validating:  39%|███▉      | 7/18 [00:40<00:53,  4.84s/it]
+Validating:  44%|████▍     | 8/18 [00:45<00:49,  4.98s/it]
+Validating:  50%|█████     | 9/18 [00:46<00:33,  3.68s/it]
+Validating:  56%|█████▌    | 10/18 [00:49<00:28,  3.56s/it]
+Validating:  61%|██████    | 11/18 [00:50<00:18,  2.65s/it]
+Validating:  67%|██████▋   | 12/18 [00:55<00:21,  3.52s/it]
+Validating:  72%|███████▏  | 13/18 [00:57<00:14,  2.97s/it]
+Validating:  78%|███████▊  | 14/18 [01:03<00:14,  3.67s/it]
+Validating:  83%|████████▎ | 15/18 [01:04<00:08,  2.87s/it]
+Validating:  89%|████████▉ | 16/18 [01:05<00:05,  2.52s/it]
+Validating:  94%|█████████▍| 17/18 [01:08<00:02,  2.48s/it]
+Validating: 100%|██████████| 18/18 [01:12<00:00,  3.06s/it]
+                                                           
+Train Loss: 0.7856 | Train CE: 0.7866 | Train Patch Entropy: 0.9906 | Val Loss: 0.6976 | Val Acc: 0.7222
+Epoch Time: 663.01s
+New best validation loss: 0.6976
+Checkpoint saved: /projects/e32998/MIL_training/final_runs/run_20261020_115803/checkpoints/20261020_120918_HierarchicalAttnMIL_epoch1.pth
+Best checkpoint updated: /projects/e32998/MIL_training/final_runs/run_20261020_115803/checkpoints/best.pth
+
+Epoch 2/2 (LR: 2.08e-04)
+
+Training:   0%|          | 0/57 [00:00<?, ?it/s]
+Training:   2%|▏         | 1/57 [00:10<09:55, 10.64s/it]
+Training:   4%|▎         | 2/57 [00:26<12:35, 13.73s/it]
+Training:   5%|▌         | 3/57 [00:40<12:23, 13.76s/it]
+Training:   7%|▋         | 4/57 [01:01<14:51, 16.82s/it]
+Training:   9%|▉         | 5/57 [01:08<11:17, 13.02s/it]
+Training:  11%|█         | 6/57 [01:15<09:33, 11.25s/it]
+Training:  12%|█▏        | 7/57 [01:23<08:14,  9.89s/it]
+Training:  14%|█▍        | 8/57 [01:31<07:46,  9.51s/it]
+Training:  16%|█▌        | 9/57 [01:40<07:22,  9.23s/it]
+Training:  18%|█▊        | 10/57 [01:47<06:38,  8.48s/it]
+Training:  19%|█▉        | 11/57 [01:54<06:13,  8.12s/it]
+Training:  21%|██        | 12/57 [02:05<06:48,  9.09s/it]
+Training:  23%|██▎       | 13/57 [02:10<05:46,  7.88s/it]
+Training:  25%|██▍       | 14/57 [02:17<05:28,  7.64s/it]
+Training:  26%|██▋       | 15/57 [02:22<04:41,  6.70s/it]
+Training:  28%|██▊       | 16/57 [02:30<04:56,  7.24s/it]
+Training:  30%|██▉       | 17/57 [02:37<04:46,  7.17s/it]
+Training:  32%|███▏      | 18/57 [02:42<04:03,  6.25s/it]
+Training:  33%|███▎      | 19/57 [02:45<03:28,  5.48s/it]
+Training:  35%|███▌      | 20/57 [02:51<03:24,  5.52s/it]
+Training:  37%|███▋      | 21/57 [03:11<06:01, 10.04s/it]
+Training:  39%|███▊      | 22/57 [03:22<05:52, 10.06s/it]
+Training:  40%|████      | 23/57 [03:47<08:16, 14.60s/it]
+Training:  42%|████▏     | 24/57 [03:55<06:57, 12.65s/it]
+Training:  44%|████▍     | 25/57 [04:00<05:34, 10.45s/it]
+Training:  46%|████▌     | 26/57 [04:07<04:48,  9.29s/it]
+Training:  47%|████▋     | 27/57 [04:10<03:44,  7.49s/it]
+Training:  49%|████▉     | 28/57 [04:24<04:33,  9.45s/it]
+Training:  51%|█████     | 29/57 [04:31<03:59,  8.56s/it]
+Training:  53%|█████▎    | 30/57 [04:33<02:58,  6.59s/it]
+Training:  54%|█████▍    | 31/57 [04:37<02:37,  6.06s/it]
+Training:  56%|█████▌    | 32/57 [04:47<02:54,  7.00s/it]
+Training:  58%|█████▊    | 33/57 [04:54<02:54,  7.27s/it]
+Training:  60%|█████▉    | 34/57 [04:58<02:23,  6.26s/it]
+Training:  61%|██████▏   | 35/57 [05:07<02:35,  7.08s/it]
+Training:  63%|██████▎   | 36/57 [05:15<02:30,  7.15s/it]
+Training:  65%|██████▍   | 37/57 [05:17<01:56,  5.81s/it]
+Training:  67%|██████▋   | 38/57 [06:09<06:14, 19.70s/it]
+Training:  68%|██████▊   | 39/57 [06:18<04:53, 16.28s/it]
+Training:  70%|███████   | 40/57 [06:26<03:58, 14.01s/it]
+Training:  72%|███████▏  | 41/57 [06:31<02:59, 11.24s/it]
+Training:  74%|███████▎  | 42/57 [06:35<02:15,  9.04s/it]
+Training:  75%|███████▌  | 43/57 [06:47<02:18,  9.93s/it]
+Training:  77%|███████▋  | 44/57 [07:02<02:28, 11.39s/it]
+Training:  79%|███████▉  | 45/57 [07:05<01:47,  8.99s/it]
+Training:  81%|████████  | 46/57 [07:10<01:24,  7.64s/it]
+Training:  82%|████████▏ | 47/57 [07:16<01:10,  7.06s/it]
+Training:  84%|████████▍ | 48/57 [07:26<01:12,  8.09s/it]
+Training:  86%|████████▌ | 49/57 [07:30<00:54,  6.78s/it]
+Training:  88%|████████▊ | 50/57 [07:33<00:40,  5.79s/it]
+Training:  89%|████████▉ | 51/57 [07:38<00:32,  5.49s/it]
+Training:  91%|█████████ | 52/57 [07:51<00:38,  7.78s/it]
+Training:  93%|█████████▎| 53/57 [08:02<00:34,  8.56s/it]
+Training:  95%|█████████▍| 54/57 [08:10<00:25,  8.39s/it]
+Training:  96%|█████████▋| 55/57 [08:19<00:17,  8.79s/it]
+Training:  98%|█████████▊| 56/57 [08:25<00:07,  7.92s/it]
+Training: 100%|██████████| 57/57 [08:33<00:00,  7.97s/it]
+                                                         
+
+Validating:   0%|          | 0/18 [00:00<?, ?it/s]
+Validating:   6%|▌         | 1/18 [00:03<00:54,  3.20s/it]
+Validating:  11%|█         | 2/18 [00:04<00:30,  1.90s/it]
+Validating:  17%|█▋        | 3/18 [00:08<00:44,  2.95s/it]
+Validating:  22%|██▏       | 4/18 [00:21<01:35,  6.80s/it]
+Validating:  28%|██▊       | 5/18 [00:22<01:03,  4.85s/it]
+Validating:  33%|███▎      | 6/18 [00:24<00:46,  3.89s/it]
+Validating:  39%|███▉      | 7/18 [00:32<00:58,  5.29s/it]
+Validating:  44%|████▍     | 8/18 [00:38<00:54,  5.45s/it]
+Validating:  50%|█████     | 9/18 [00:39<00:36,  4.03s/it]
+Validating:  56%|█████▌    | 10/18 [00:44<00:35,  4.42s/it]
+Validating:  61%|██████    | 11/18 [00:45<00:23,  3.31s/it]
+Validating:  67%|██████▋   | 12/18 [00:47<00:18,  3.01s/it]
+Validating:  72%|███████▏  | 13/18 [00:49<00:13,  2.73s/it]
+Validating:  78%|███████▊  | 14/18 [00:55<00:13,  3.48s/it]
+Validating:  83%|████████▎ | 15/18 [00:56<00:08,  2.88s/it]
+Validating:  89%|████████▉ | 16/18 [01:02<00:07,  3.82s/it]
+Validating:  94%|█████████▍| 17/18 [01:05<00:03,  3.51s/it]
+Validating: 100%|██████████| 18/18 [01:08<00:00,  3.36s/it]
+                                                           
+Train Loss: 0.6444 | Train CE: 0.6453 | Train Patch Entropy: 0.9289 | Val Loss: 0.1619 | Val Acc: 1.0000
+Epoch Time: 582.34s
+New best validation loss: 0.1619
+Checkpoint saved: /projects/e32998/MIL_training/final_runs/run_20261020_115803/checkpoints/20261020_121901_HierarchicalAttnMIL_epoch2.pth
+Best checkpoint updated: /projects/e32998/MIL_training/final_runs/run_20261020_115803/checkpoints/best.pth
+
+Training completed!
+
+============================================================
+EVALUATING MODEL
+============================================================
+
+Evaluating:   0%|          | 0/18 [00:00<?, ?it/s]
+Evaluating:   6%|▌         | 1/18 [00:04<01:19,  4.65s/it]
+Evaluating:  11%|█         | 2/18 [00:12<01:45,  6.62s/it]
+Evaluating:  17%|█▋        | 3/18 [00:14<01:08,  4.56s/it]
+Evaluating:  22%|██▏       | 4/18 [00:18<00:56,  4.06s/it]
+Evaluating:  28%|██▊       | 5/18 [00:19<00:42,  3.24s/it]
+Evaluating:  33%|███▎      | 6/18 [00:29<01:03,  5.30s/it]
+Evaluating:  39%|███▉      | 7/18 [00:34<00:57,  5.24s/it]
+Evaluating:  44%|████▍     | 8/18 [00:38<00:50,  5.03s/it]
+Evaluating:  50%|█████     | 9/18 [00:42<00:41,  4.59s/it]
+Evaluating:  56%|█████▌    | 10/18 [00:46<00:34,  4.31s/it]
+Evaluating:  61%|██████    | 11/18 [00:47<00:23,  3.39s/it]
+Evaluating:  67%|██████▋   | 12/18 [00:51<00:21,  3.64s/it]
+Evaluating:  72%|███████▏  | 13/18 [00:53<00:14,  2.99s/it]
+Evaluating:  78%|███████▊  | 14/18 [00:59<00:15,  3.99s/it]
+Evaluating:  83%|████████▎ | 15/18 [01:07<00:15,  5.17s/it]
+Evaluating:  89%|████████▉ | 16/18 [01:08<00:08,  4.06s/it]
+Evaluating:  94%|█████████▍| 17/18 [01:12<00:03,  3.89s/it]
+Evaluating: 100%|██████████| 18/18 [01:35<00:00,  9.73s/it]
+Evaluating: 100%|██████████| 18/18 [01:35<00:00,  5.31s/it]
+
+Test Results:
+  Test Loss: 0.3194
+  Test Acc:  0.9444
+  Samples:   18
+Predictions saved to: /projects/e32998/MIL_training/final_runs/run_20261020_115803/predictions.csv
+Traceback (most recent call last):
+  File "/gpfs/projects/e32998/STAT390_Fall2026/Team2_TheConsultancy/Alyssa_Presentation1_base_code/main.py", line 339, in <module>
+    main()
+  File "/gpfs/projects/e32998/STAT390_Fall2026/Team2_TheConsultancy/Alyssa_Presentation1_base_code/main.py", line 300, in main
+    test_results = trainer.evaluate(
+  File "/gpfs/projects/e32998/STAT390_Fall2026/Team2_TheConsultancy/Alyssa_Presentation1_base_code/trainer.py", line 583, in evaluate
+    self._save_confusion_matrix(results, out_dir)
+  File "/gpfs/projects/e32998/STAT390_Fall2026/Team2_TheConsultancy/Alyssa_Presentation1_base_code/trainer.py", line 645, in _save_confusion_matrix
+    plt.figure(figsize=(8, 6))
+  File "/home/npg2887/.local/lib/python3.10/site-packages/matplotlib/pyplot.py", line 1041, in figure
+    manager = new_figure_manager(
+  File "/home/npg2887/.local/lib/python3.10/site-packages/matplotlib/pyplot.py", line 550, in new_figure_manager
+    _warn_if_gui_out_of_main_thread()
+  File "/home/npg2887/.local/lib/python3.10/site-packages/matplotlib/pyplot.py", line 527, in _warn_if_gui_out_of_main_thread
+    canvas_class = cast(type[FigureCanvasBase], _get_backend_mod().FigureCanvas)
+  File "/home/npg2887/.local/lib/python3.10/site-packages/matplotlib/pyplot.py", line 368, in _get_backend_mod
+    switch_backend(rcParams._get("backend"))
+  File "/home/npg2887/.local/lib/python3.10/site-packages/matplotlib/pyplot.py", line 410, in switch_backend
+    switch_backend(candidate)
+  File "/home/npg2887/.local/lib/python3.10/site-packages/matplotlib/pyplot.py", line 424, in switch_backend
+    module = backend_registry.load_backend_module(newbackend)
+  File "/home/npg2887/.local/lib/python3.10/site-packages/matplotlib/backends/registry.py", line 317, in load_backend_module
+    return importlib.import_module(module_name)
+  File "/software/python/3.10.1/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/npg2887/.local/lib/python3.10/site-packages/matplotlib/backends/backend_agg.py", line 38, in <module>
+    from matplotlib.backends._backend_agg import RendererAgg as _RendererAgg
+  File "<frozen importlib._bootstrap>", line 1022, in _find_and_load
+  File "/home/npg2887/.local/lib/python3.10/site-packages/torch/utils/data/_utils/signal_handling.py", line 73, in handler
+    _error_if_any_worker_fails()
+RuntimeError: DataLoader worker (pid 2025608) is killed by signal: Killed. 

@@ -1,0 +1,9 @@
+[
+  {
+    "split": 1,
+    "split_file": "/gpfs/projects/e32998/STAT390_Fall2026/Team2_TheConsultancy/Alyssa_Presentation1_base_code/data_splits_new_01.npz",
+    "run_dir": "/projects/e32998/MIL_training/final_runs/run_20261020_115803",
+    "runtime_sec": 1370.8,
+    "returncode": 1
+  }
+]

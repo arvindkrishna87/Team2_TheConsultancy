@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/gpfs/projects/e32998/STAT390_Fall2026/Team2_TheConsultancy/Alyssa_Presentation1_base_code/main.py", line 23, in <module>
+    from trainer import MILTrainer, count_patches_by_class
+  File "/gpfs/projects/e32998/STAT390_Fall2026/Team2_TheConsultancy/Alyssa_Presentation1_base_code/trainer.py", line 34, in <module>
+    from tqdm import tqdm
+ModuleNotFoundError: No module named 'tqdm'
