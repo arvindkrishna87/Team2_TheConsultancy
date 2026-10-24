@@ -1,0 +1,37 @@
+[
+  {
+    "split": 1,
+    "split_file": "/gpfs/projects/e32998/STAT390_Fall2026/Team2_TheConsultancy/Alyssa_Presentation1_base_code/data_splits_new_01.npz",
+    "run_dir": null,
+    "runtime_sec": 10.3,
+    "returncode": 1
+  },
+  {
+    "split": 2,
+    "split_file": "/gpfs/projects/e32998/STAT390_Fall2026/Team2_TheConsultancy/Alyssa_Presentation1_base_code/data_splits_new_02.npz",
+    "run_dir": null,
+    "runtime_sec": 2.8,
+    "returncode": 1
+  },
+  {
+    "split": 3,
+    "split_file": "/gpfs/projects/e32998/STAT390_Fall2026/Team2_TheConsultancy/Alyssa_Presentation1_base_code/data_splits_new_03.npz",
+    "run_dir": null,
+    "runtime_sec": 2.9,
+    "returncode": 1
+  },
+  {
+    "split": 4,
+    "split_file": "/gpfs/projects/e32998/STAT390_Fall2026/Team2_TheConsultancy/Alyssa_Presentation1_base_code/data_splits_new_04.npz",
+    "run_dir": null,
+    "runtime_sec": 2.7,
+    "returncode": 1
+  },
+  {
+    "split": 5,
+    "split_file": "/gpfs/projects/e32998/STAT390_Fall2026/Team2_TheConsultancy/Alyssa_Presentation1_base_code/data_splits_new_05.npz",
+    "run_dir": null,
+    "runtime_sec": 2.7,
+    "returncode": 1
+  }
+]

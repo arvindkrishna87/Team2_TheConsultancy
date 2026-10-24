@@ -1,0 +1,6 @@
+split,wall_clock_sec,main_py_reported_sec,wall_clock_min,epochs_run,best_val_epoch,early_stopped_at,sec_per_epoch,run_dir
+01,1581.0,1537.25,26.35,16,8,16,96.078125,/projects/e32998/MIL_training/final_runs/run_20261022_000400
+02,1562.0,1531.32,26.033333333333335,15,7,15,102.088,/projects/e32998/MIL_training/final_runs/run_20261022_000409
+03,1109.0,1072.63,18.483333333333334,19,11,19,56.4542105263158,/projects/e32998/MIL_training/final_runs/run_20261022_003207
+04,1585.0,1552.39,26.416666666666668,10,2,10,155.239,/projects/e32998/MIL_training/final_runs/run_20261022_003236
+05,2818.0,2781.26,46.96666666666667,23,15,23,120.92434782608697,/projects/e32998/MIL_training/final_runs/run_20261022_003250

@@ -1,0 +1,159 @@
+/home/npg2887/.local/lib/python3.10/site-packages/torch/cuda/__init__.py:228: UserWarning: CUDA initialization: The NVIDIA driver on your system is too old (found version 12080). Please update your GPU driver by downloading and installing a new version from the URL: http://www.nvidia.com/Download/index.aspx Alternatively, go to: https://pytorch.org to install a PyTorch version that has been compiled with your version of the CUDA driver. (Triggered internally at /__w/pytorch/pytorch/c10/cuda/CUDAFunctions.cpp:119.)
+  return torch._C._cuda_getDeviceCount() > 0
+Random seed set to 2026
+Using CPU
+Created run directory: /projects/e32998/MIL_training/final_runs/run_20261020_123332
+================================================================================
+HIERARCHICAL ATTENTION MIL TRAINING
+================================================================================
+Arguments: {'labels_csv': '/projects/e32998/STAT390_Krish/Code/Code4_reduce_runtime/extra_benign_case_grade_match.csv', 'patches_dir': '/projects/e32998/patches_benign_split', 'epochs': 2, 'lr': 0.000208, 'batch_size': 1, 'num_workers': 2, 'embed_dim': 512, 'per_slice_cap': 800, 'max_slices_per_stain': None, 'seed': 2026, 'resume': None, 'eval_only': False, 'analyze_attention': False, 'attention_top_n': 5, 'load_splits': '/gpfs/home/npg2887/Alyssa_Presentation1_base_code/data_splits_new_01.npz', 'checkpoint_dir': '/projects/e32998/MIL_training/final_runs/run_20261020_123332/checkpoints'}
+Training config (may be overridden by arguments): {'epochs': 30, 'batch_size': 1, 'learning_rate': 0.000208, 'weight_decay': 0.000305, 'num_workers': 2, 'pin_memory': True, 'random_state': 42, 'class_weights': [2.5285, 1.0], 'dropout': 0.2599, 'use_scheduler': True, 'scheduler_type': 'reduce_on_plateau', 'scheduler_patience': 4, 'scheduler_factor': 0.2139, 'scheduler_min_lr': 1e-06, 'early_stopping': True, 'early_stopping_patience': 8, 'early_stopping_min_delta': 0.001, 'early_stopping_min_epochs': 10, 'use_patch_entropy_regularization': True, 'patch_entropy_lambda': 0.001, 'patch_entropy_mode': 'max', 'patch_entropy_eps': 1e-08, 'normalize_patch_entropy': True}
+============================================================
+PREPARING DATA
+============================================================
+Loaded 118 labels
+Found 83630 patch files
+All 3808 non-standard file names were handled.
+Grouped into 383 slices
+Mapped 371 slices to classes
+Class distribution: {1: 238, 0: 133}
+
+----------------------------------------
+SPLITTING DATA
+----------------------------------------
+Loading existing splits from: /gpfs/home/npg2887/Alyssa_Presentation1_base_code/data_splits_new_01.npz
+Data splits loaded from: /gpfs/home/npg2887/Alyssa_Presentation1_base_code/data_splits_new_01.npz
+Loaded splits - Train: 228, Val: 75, Test: 68
+Cases per split: 57 18 18
+Paths per split: 50394 14723 14924
+No leakage between train & val (cases).
+No leakage between train & test (cases).
+No leakage between val & test (cases).
+No leakage between train & val (paths).
+No leakage between train & test (paths).
+No leakage between val & test (paths).
+
+Data Summary:
+==================================================
+
+Label distribution per split:
+label   0   1
+split        
+test    7  11
+train  21  36
+val     7  11
+
+Mean patches per stain per split:
+       h&e_patches  melan_patches  sox10_patches
+split                                           
+test         396.3          229.2          203.6
+train        461.2          235.3          187.6
+val          348.1          249.0          220.9
+
+Median patches per stain per split:
+       h&e_patches  melan_patches  sox10_patches
+split                                           
+test         308.0          189.5          166.5
+train        348.0          192.0          137.0
+val          284.0          152.0          154.5
+
+Missing stain proportion:
+       h&e_missing  melan_missing  sox10_missing
+split                                           
+test           0.0          0.000          0.000
+train          0.0          0.018          0.035
+val            0.0          0.056          0.000
+
+Total cases: 93
+Total patches: 80,041
+==================================================
+
+Patch count by class for Train:
+  Benign (0):     16740 patches
+  High-grade (1): 33654 patches
+
+Patch count by class for Validation:
+  Benign (0):     3226 patches
+  High-grade (1): 11497 patches
+
+Patch count by class for Test:
+  Benign (0):     5814 patches
+  High-grade (1): 9110 patches
+
+Data Integrity Check for Train:
+Stain coverage:
+  h&e: 57/57 (100.0%)
+  melan: 56/57 (98.2%)
+  sox10: 55/57 (96.5%)
+No issues found
+
+Data Integrity Check for Validation:
+Stain coverage:
+  h&e: 18/18 (100.0%)
+  sox10: 18/18 (100.0%)
+  melan: 17/18 (94.4%)
+No issues found
+
+Data Integrity Check for Test:
+Stain coverage:
+  h&e: 18/18 (100.0%)
+  melan: 18/18 (100.0%)
+  sox10: 18/18 (100.0%)
+No issues found
+Using existing splits from: /gpfs/home/npg2887/Alyssa_Presentation1_base_code/data_splits_new_01.npz
+
+============================================================
+CREATING DATA LOADERS (POOLED FEATURES)
+============================================================
+Created data loaders - Train: 57, Val: 18, Test: 18
+
+============================================================
+CREATING MODEL
+============================================================
+
+Model Summary:
+==================================================
+Total parameters: 2,493,061
+Trainable parameters: 2,493,061
+Model size: 9.51 MB
+==================================================
+
+============================================================
+TRAINING MODEL
+============================================================
+Starting training from epoch 1 to 2
+Device: cpu
+Model parameters: 2,493,061
+LR scheduler: ReduceLROnPlateau
+Patch entropy regularization enabled (lambda=0.001, mode=max, normalize=True) -> maximize entropy (smoother attention)
+Early stopping enabled (patience=8, min_delta=0.001, min_epochs=10)
+
+Epoch 1/2 (LR: 2.08e-04)
+
+Training:   0%|          | 0/57 [00:00<?, ?it/s]/home/npg2887/.local/lib/python3.10/site-packages/torch/utils/data/dataloader.py:1102: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+  super().__init__(loader)
+
+Training:   2%|▏         | 1/57 [00:10<09:29, 10.17s/it]
+Training:   4%|▎         | 2/57 [00:22<10:28, 11.43s/it]
+Training:   5%|▌         | 3/57 [00:35<10:45, 11.96s/it]
+Training:   7%|▋         | 4/57 [00:40<08:27,  9.57s/it]
+Training:   9%|▉         | 5/57 [00:47<07:27,  8.61s/it]
+Training:  11%|█         | 6/57 [00:54<06:37,  7.79s/it]
+Training:  12%|█▏        | 7/57 [01:01<06:24,  7.69s/it]
+Training:  14%|█▍        | 8/57 [01:12<07:14,  8.87s/it]
+Training:  16%|█▌        | 9/57 [01:25<07:57,  9.94s/it]
+Training:  18%|█▊        | 10/57 [01:33<07:24,  9.47s/it]
+Training:  19%|█▉        | 11/57 [01:45<07:45, 10.12s/it]
+Training:  21%|██        | 12/57 [02:19<13:11, 17.60s/it]
+Training:  23%|██▎       | 13/57 [02:25<10:15, 13.99s/it]
+Training:  25%|██▍       | 14/57 [02:34<08:55, 12.45s/it]
+Training:  26%|██▋       | 15/57 [02:39<07:12, 10.30s/it]
+Training:  28%|██▊       | 16/57 [02:48<06:40,  9.76s/it]
+Training:  30%|██▉       | 17/57 [02:54<05:52,  8.81s/it]
+Training:  32%|███▏      | 18/57 [03:02<05:30,  8.47s/it]
+Training:  33%|███▎      | 19/57 [03:07<04:36,  7.28s/it]
+Training:  35%|███▌      | 20/57 [03:30<07:25, 12.03s/it]
+Training:  37%|███▋      | 21/57 [03:39<06:46, 11.30s/it]
+Training:  39%|███▊      | 22/57 [03:55<07:22, 12.65s/it]
+Training:  40%|████      | 23/57 [04:18<08:49, 15.58s/it]
+Training:  42%|████▏     | 24/57 [04:21<06:36, 12.01s/it]
