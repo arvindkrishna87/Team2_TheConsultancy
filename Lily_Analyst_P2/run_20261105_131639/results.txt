@@ -1,0 +1,10 @@
+Test Results:
+Test Loss: 0.4571
+Test Accuracy: 0.8889
+Number of samples: 18
+Checkpoint used: /projects/e32998/MIL_training/final_runs/run_20261105_131639/checkpoints/best.pth
+
+Output files:
+- predictions.csv: Per-case predictions and probabilities
+- confusion_matrix.png: Visual confusion matrix
+- attention_analysis/: Attention visualizations and summary
