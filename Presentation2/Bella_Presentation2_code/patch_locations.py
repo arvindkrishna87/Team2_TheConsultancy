@@ -1,5 +1,5 @@
 """
-Outline the top-5 attended patches on each of 6 slices (cases 1 and 4 x H&E, Melan-A, Sox10),
+Outline the top-5 patches by patch attention on each of 6 slices (cases 1 and 4 x H&E, Melan-A, Sox10),
 one picture per slice. Run from folder that also has find_patch.py:
     /projects/e32998/env/bin/python patch_locations.py
 Saves patch_locations/<slice>_top5.png. Prints one line per slice, plus any patch that fails to match.
@@ -13,10 +13,10 @@ from find_patch import load_rgb, gray, build_sift, find_patch
 RUN_DIR   = "/projects/e32998/STAT390_Fall2026/Team2_TheConsultancy/Presentation2/Lily_Presentation2_code/run_20261105_131639"
 PATCH_DIR = "/projects/e32998/patches_benign_split"
 OUT = "patch_locations"
-TOP_K = 5 # can change for more top x patches
-GREEN = (0, 255, 0)
-LINE_SCALE = 1.5   # outline thickness so can raise for thicker lines
-TEXT_SCALE = 1.6   # label size so can raise for bigger text
+TOP_K = 5
+RED = (0, 0, 255)  
+LINE_SCALE = 1.5   # bigger means larger lines
+TEXT_SCALE = 1.5   # bigger means larger text
 os.makedirs(OUT, exist_ok=True)
 
 BASE = "/home/pnx4472/Presentation2_base_code_edited/patches"
@@ -51,7 +51,7 @@ for slice_name, tif_path in SLICES.items():
     s = df[df.slice_name == slice_name]
     if s.empty:
         raise ValueError(f"{slice_name} not in this run's test set")
-    top = s.nlargest(TOP_K, "effective_weight")
+    top = s.nlargest(TOP_K, "patch_attn_weight")
 
     slice_rgb = load_rgb(tif_path)                       # ~1 min per slice for SIFT
     skp, sdesc = sift.detectAndCompute(gray(slice_rgb), None)
@@ -59,8 +59,8 @@ for slice_name, tif_path in SLICES.items():
     canvas = cv2.cvtColor(np.ascontiguousarray(slice_rgb), cv2.COLOR_RGB2BGR)
     base_thick = max(3, canvas.shape[1] // 600)
     line_thick = int(round(base_thick * LINE_SCALE))
-    font = max(1.0, canvas.shape[1] / 1500) * TEXT_SCALE
-    text_thick = max(2, int(round(base_thick * TEXT_SCALE)))
+    font = canvas.shape[1] / 1500 * TEXT_SCALE
+    text_thick = max(1, int(round(font * 1.5)))
 
     found = 0
     for rank, (_, r) in enumerate(top.iterrows(), start=1):
@@ -75,10 +75,10 @@ for slice_name, tif_path in SLICES.items():
             continue
 
         pts = box_corners(res, patch.shape).astype(np.int32)
-        cv2.polylines(canvas, [pts], isClosed=True, color=GREEN, thickness=line_thick)
+        cv2.polylines(canvas, [pts], isClosed=True, color=RED, thickness=line_thick)
         x, y = pts.min(axis=0)
-        cv2.putText(canvas, f"#{rank}  {r.effective_weight:.4f}", (int(x), int(y) - 2 * line_thick),
-                    cv2.FONT_HERSHEY_SIMPLEX, font, GREEN, text_thick)
+        cv2.putText(canvas, f"#{rank}  {r.patch_attn_weight:.4f}", (int(x), int(y) - 2 * line_thick),
+                    cv2.FONT_HERSHEY_SIMPLEX, font, RED, text_thick)
         found += 1
 
     out_path = os.path.join(OUT, f"{slice_name}_top{TOP_K}.png")
