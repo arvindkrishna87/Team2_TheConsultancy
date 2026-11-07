@@ -1,0 +1,52 @@
+Job ID: 7377112
+Start time: Thu Nov  5 21:48:36 CST 2026
+=== KimiaNet load diagnostics (precompute) ===
+Checkpoint: /home/gqn8703/Presentation2_base_code/KimiaNet.pth
+Filtered keys loaded: 725
+Matched features.* keys: 725/725 (100.0%)
+Missing keys: 2 (examples: ['classifier.weight', 'classifier.bias'])
+Unexpected keys: 0
+[INFO] sampled 500 patches from 250 slices / 85 cases
+[PROGRESS] 50/500
+[PROGRESS] 100/500
+[PROGRESS] 150/500
+[PROGRESS] 200/500
+[PROGRESS] 250/500
+[PROGRESS] 300/500
+[PROGRESS] 350/500
+[PROGRESS] 400/500
+[PROGRESS] 450/500
+[PROGRESS] 500/500
+
+Patches: 491  (slices: 249, cases: 85)
+Same-slice pairs: 155, different-case pairs: 491
+Reproduction check vs /projects/e32998/patches_varsize_pooled4096: 491 matched, mean cos=1.00000, min=1.00000 (should be ~1.0; fp16 storage explains tiny gaps)
+
+baseline: same-slice neighbour     raw mean=0.4583 (p5=0.1924, p95=0.7512) | centered mean=0.2684 (p5=-0.0510, p95=0.5669)
+baseline: different case           raw mean=0.2635 (p5=0.0074, p95=0.5082) | centered mean=0.0042 (p5=-0.2777, p95=0.3073)
+
+hflip: aug vs orig                 raw mean=0.7630 (p5=0.5610, p95=0.9197) | centered mean=0.6804 (p5=0.4169, p95=0.9070)
+                                   relative_shift = 0.621  (aug distance / same-slice neighbour distance)
+                                   centered cos(aug, orig with 2x2 cells reordered) mean=0.7782  (close to 1 => augmentation is mostly a cell reshuffle)
+
+vflip: aug vs orig                 raw mean=0.6852 (p5=0.4263, p95=0.9124) | centered mean=0.5765 (p5=0.2747, p95=0.8705)
+                                   relative_shift = 0.719  (aug distance / same-slice neighbour distance)
+                                   centered cos(aug, orig with 2x2 cells reordered) mean=0.6706  (close to 1 => augmentation is mostly a cell reshuffle)
+
+rot90: aug vs orig                 raw mean=0.6867 (p5=0.4643, p95=0.8950) | centered mean=0.5743 (p5=0.3094, p95=0.8429)
+                                   relative_shift = 0.725  (aug distance / same-slice neighbour distance)
+                                   centered cos(aug, orig with 2x2 cells reordered) mean=0.6583  (close to 1 => augmentation is mostly a cell reshuffle)
+
+rot180: aug vs orig                raw mean=0.6357 (p5=0.3459, p95=0.8779) | centered mean=0.5106 (p5=0.1761, p95=0.8307)
+                                   relative_shift = 0.774  (aug distance / same-slice neighbour distance)
+                                   centered cos(aug, orig with 2x2 cells reordered) mean=0.6158  (close to 1 => augmentation is mostly a cell reshuffle)
+
+color_jitter: aug vs orig          raw mean=0.9477 (p5=0.8524, p95=0.9939) | centered mean=0.9300 (p5=0.8131, p95=0.9919)
+                                   relative_shift = 0.279  (aug distance / same-slice neighbour distance)
+
+hed_jitter: aug vs orig            raw mean=0.8989 (p5=0.6691, p95=0.9894) | centered mean=0.8675 (p5=0.5571, p95=0.9857)
+                                   relative_shift = 0.370  (aug distance / same-slice neighbour distance)
+
+
+[DONE] wrote /home/gqn8703/Presentation2_base_code/aug_similarity_check/summary.txt and per_patch_similarity.csv
+End time: Thu Nov  5 22:00:22 CST 2026

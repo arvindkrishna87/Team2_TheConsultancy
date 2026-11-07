@@ -1,0 +1,48 @@
+Job 7379879_1: augment=vflip
+Start time: Thu Nov  5 22:29:50 CST 2026
+[INFO] patches_dir:      /projects/e32998/patches_benign_split
+[INFO] embeddings_dir:   /home/gqn8703/Presentation2_base_code/embeddings_aug/vflip
+[INFO] kimianet_ckpt:    /home/gqn8703/Presentation2_base_code/KimiaNet.pth
+[INFO] device:           cpu
+[INFO] batch_size:       128
+[INFO] num_workers:      4
+[INFO] overwrite:        False
+[INFO] dtype:            fp16
+[INFO] min_patch_size:   32x32
+[INFO] log_every:        50
+[INFO] augment:          vflip
+[INFO] resizing:         disabled
+[INFO] forward pass:     one patch at a time
+[INFO] Found 83630 PNG files.
+=== KimiaNet load diagnostics (precompute) ===
+Checkpoint: /home/gqn8703/Presentation2_base_code/KimiaNet.pth
+Filtered keys loaded: 725
+Matched features.* keys: 725/725 (100.0%)
+Missing keys: 2 (examples: ['classifier.weight', 'classifier.bias'])
+Unexpected keys: 0
+[PROGRESS] step=50 seen=6400/83630 saved=6320 skipped_existing=0 skipped_bad=0 skipped_too_small=80 rate=5.56 patches/sec ETA=3h 51m 35s
+[PROGRESS] step=100 seen=12800/83630 saved=12675 skipped_existing=0 skipped_bad=0 skipped_too_small=125 rate=5.23 patches/sec ETA=3h 45m 49s
+[PROGRESS] step=150 seen=19200/83630 saved=18954 skipped_existing=0 skipped_bad=0 skipped_too_small=246 rate=5.30 patches/sec ETA=3h 22m 30s
+[PROGRESS] step=200 seen=25600/83630 saved=25341 skipped_existing=0 skipped_bad=0 skipped_too_small=259 rate=5.42 patches/sec ETA=2h 58m 28s
+[PROGRESS] step=250 seen=32000/83630 saved=31616 skipped_existing=0 skipped_bad=0 skipped_too_small=384 rate=5.92 patches/sec ETA=2h 25m 14s
+[PROGRESS] step=300 seen=38400/83630 saved=37938 skipped_existing=0 skipped_bad=0 skipped_too_small=462 rate=6.40 patches/sec ETA=1h 57m 45s
+[PROGRESS] step=350 seen=44800/83630 saved=44191 skipped_existing=0 skipped_bad=0 skipped_too_small=609 rate=6.74 patches/sec ETA=1h 36m 0s
+[PROGRESS] step=400 seen=51200/83630 saved=50583 skipped_existing=0 skipped_bad=0 skipped_too_small=617 rate=7.03 patches/sec ETA=1h 16m 51s
+[PROGRESS] step=450 seen=57600/83630 saved=56503 skipped_existing=0 skipped_bad=0 skipped_too_small=1097 rate=6.71 patches/sec ETA=1h 4m 38s
+[PROGRESS] step=500 seen=64000/83630 saved=62176 skipped_existing=0 skipped_bad=0 skipped_too_small=1824 rate=6.99 patches/sec ETA=46m 47s
+[PROGRESS] step=550 seen=70400/83630 saved=68489 skipped_existing=0 skipped_bad=0 skipped_too_small=1911 rate=7.24 patches/sec ETA=30m 28s
+[PROGRESS] step=600 seen=76800/83630 saved=74805 skipped_existing=0 skipped_bad=0 skipped_too_small=1995 rate=7.02 patches/sec ETA=16m 12s
+[PROGRESS] step=650 seen=83200/83630 saved=81197 skipped_existing=0 skipped_bad=0 skipped_too_small=2003 rate=7.19 patches/sec ETA=59s
+[PROGRESS] step=654 seen=83630/83630 saved=81627 skipped_existing=0 skipped_bad=0 skipped_too_small=2003 rate=7.20 patches/sec ETA=0s
+[DONE]
+[SUMMARY] total_png=83630
+[SUMMARY] saved=81627
+[SUMMARY] skipped_existing=0
+[SUMMARY] skipped_bad=0
+[SUMMARY] skipped_too_small=2003
+[SUMMARY] embeddings_dir=/home/gqn8703/Presentation2_base_code/embeddings_aug/vflip
+[SUMMARY] total_time=3h 13m 36s
+Note: saved tensors are length 4096 (DenseNet121 + AdaptiveAvgPool2d((2,2))).
+Note: this version is typically slower than the resized batched version because
+      variable-size patches are forwarded one at a time instead of as a stacked batch.
+End time: Fri Nov  6 01:44:04 CST 2026

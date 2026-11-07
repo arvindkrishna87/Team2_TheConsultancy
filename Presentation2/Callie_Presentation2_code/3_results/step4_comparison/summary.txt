@@ -1,0 +1,22 @@
+Baseline vs augmented - 5 splits, 86 test cases
+
+POOLED TEST METRICS (all test cases together)
+  baseline         acc=0.814  benign recall=0.821  high-grade recall=0.810  balanced acc=0.816  CM [[TN,FP],[FN,TP]]=[[23, 5], [11, 47]]
+  flip-augmented   acc=0.814  benign recall=0.714  high-grade recall=0.862  balanced acc=0.788  CM [[TN,FP],[FN,TP]]=[[20, 8], [8, 50]]
+  Paired case-level comparison: baseline-only correct=4, augmented-only correct=4, exact McNemar p=1.000
+  (With ~90 cases, a difference of 1-3 cases is within noise; p<0.05 needs a clear gap.)
+
+PER-SPLIT MEAN +/- SD
+  baseline         accuracy=0.814±0.095  benign_recall=0.833±0.289  high_grade_recall=0.809±0.202  test_loss=0.600±0.318
+  flip-augmented   accuracy=0.814±0.095  benign_recall=0.720±0.217  high_grade_recall=0.862±0.156  test_loss=0.503±0.287
+
+MEMORIZATION (train CE = classification part of training loss)
+  baseline         train_ce_final=0.004  min_train_ce=0.004  train_ce_at_best=0.286  val_loss_at_best=0.406  gap_at_best=0.120  gap_final=1.014  val_rise_after_best=0.865  best_epoch=6.000  epochs_trained=14.000
+                   first epoch with train CE < 0.05 per split: [7, 7, 10, 8, 9]
+  flip-augmented   train_ce_final=0.011  min_train_ce=0.010  train_ce_at_best=0.317  val_loss_at_best=0.383  gap_at_best=0.066  gap_final=0.913  val_rise_after_best=1.059  best_epoch=5.000  epochs_trained=13.000
+                   first epoch with train CE < 0.05 per split: [6, 8, 11, 6, 12]
+
+How to read: memorization is reduced if the augmented model's train CE stays higher / falls
+more slowly AND its gap (val loss - train CE) and val_rise_after_best are smaller.
+Performance improved only if pooled accuracy / recalls are higher; check the McNemar p and
+the per-split spread before calling a difference real.

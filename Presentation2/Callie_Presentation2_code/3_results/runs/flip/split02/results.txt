@@ -1,0 +1,12 @@
+Test Results:
+Test Loss: 0.9868
+Test Accuracy: 0.7778
+Benign recall: 0.3333
+High-grade recall: 1.0000
+Confusion matrix [[TN, FP], [FN, TP]] (rows=true benign/high-grade): [[2, 4], [0, 12]]
+Number of samples: 18
+Checkpoint used: /home/gqn8703/Presentation2_base_code/runs_base_vs_flip/flip/split02/run_20261106_014540/checkpoints/best.pth
+
+Output files:
+- predictions.csv: Per-case predictions and probabilities
+- confusion_matrix.png: Visual confusion matrix

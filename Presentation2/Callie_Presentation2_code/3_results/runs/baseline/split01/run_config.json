@@ -1,0 +1,64 @@
+{
+  "args": {
+    "labels_csv": "/projects/e32998/STAT390_Krish/Code/Code4_reduce_runtime/extra_benign_case_grade_match.csv",
+    "patches_dir": "/projects/e32998/patches_benign_split",
+    "epochs": 30,
+    "lr": 0.000208,
+    "batch_size": 1,
+    "num_workers": 2,
+    "embed_dim": 512,
+    "per_slice_cap": 500,
+    "max_slices_per_stain": 5,
+    "seed": 42,
+    "resume": null,
+    "eval_only": false,
+    "analyze_attention": false,
+    "attention_top_n": 5,
+    "load_splits": "/home/gqn8703/Presentation2_base_code/no_train_val_leakage_splits/data_splits_new_01.npz",
+    "emb_dir": "/projects/e32998/patches_varsize_pooled4096",
+    "aug_emb_dirs": [],
+    "runs_dir": "/home/gqn8703/Presentation2_base_code/runs_base_vs_flip/baseline/split01",
+    "run_name": "baseline_split01",
+    "checkpoint_dir": "/home/gqn8703/Presentation2_base_code/runs_base_vs_flip/baseline/split01/run_20261105_223023/checkpoints"
+  },
+  "training_config": {
+    "epochs": 30,
+    "batch_size": 1,
+    "learning_rate": 0.000208,
+    "weight_decay": 0.000305,
+    "num_workers": 2,
+    "pin_memory": true,
+    "random_state": 42,
+    "class_weights": [
+      2.5285,
+      1.0
+    ],
+    "dropout": 0.2599,
+    "use_scheduler": true,
+    "scheduler_type": "reduce_on_plateau",
+    "scheduler_patience": 4,
+    "scheduler_factor": 0.2139,
+    "scheduler_min_lr": 1e-06,
+    "early_stopping": true,
+    "early_stopping_patience": 8,
+    "early_stopping_min_delta": 0.001,
+    "early_stopping_min_epochs": 10,
+    "use_patch_entropy_regularization": true,
+    "patch_entropy_lambda": 0.001,
+    "patch_entropy_mode": "max",
+    "patch_entropy_eps": 1e-08,
+    "normalize_patch_entropy": true
+  },
+  "model_config": {
+    "num_classes": 2,
+    "embed_dim": 512,
+    "attention_hidden_dim": 128,
+    "per_slice_cap": 800,
+    "max_slices_per_stain": null,
+    "stains": [
+      "h&e",
+      "melan",
+      "sox10"
+    ]
+  }
+}

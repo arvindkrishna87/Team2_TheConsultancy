@@ -1,0 +1,21 @@
+{
+  "test_loss": 0.2867068330558729,
+  "test_accuracy": 0.8823529411764706,
+  "num_samples": 17,
+  "confusion_matrix": [
+    [
+      4,
+      1
+    ],
+    [
+      1,
+      11
+    ]
+  ],
+  "benign_recall": 0.8,
+  "high_grade_recall": 0.9166666666666666,
+  "balanced_accuracy": 0.8583333333333334,
+  "best_epoch": 8,
+  "epochs_trained": 16,
+  "checkpoint": "/home/gqn8703/Presentation2_base_code/runs_base_vs_flip/flip/split05/run_20261106_014540/checkpoints/best.pth"
+}
