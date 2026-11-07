@@ -1,0 +1,43 @@
+PER SPLIT
+ encoder  split  n  accuracy  benign_recall  high_grade_recall   auc  best_epoch  epochs_trained  best_val_loss test_loss
+kimianet      1 17     0.765          1.000              0.667 0.917           3              11          0.420    0.5024
+    uni2      1 17     0.882          0.800              0.917 0.983          30              30          0.114    0.2789
+kimianet      2 18     0.833          0.667              0.917 0.944           6              14          0.811    1.4055
+    uni2      2 18     0.944          1.000              0.917 1.000           5              13          0.323    0.0934
+kimianet      3 17     0.765          1.000              0.636 0.955           6              14          0.483    0.5387
+    uni2      3 17     0.941          0.833              1.000 1.000          17              25          0.001    0.3074
+kimianet      4 17     0.941          0.833              1.000 1.000          11              19          0.163    0.6721
+    uni2      4 17     1.000          1.000              1.000 1.000           8              16          0.029    0.0644
+kimianet      5 17     0.882          1.000              0.833 1.000           8              16          0.139    0.2126
+    uni2      5 17     0.941          0.800              1.000 0.917           7              14          0.473    0.7679
+
+POOLED OVER ALL TEST CASES
+ encoder  n  accuracy  benign_recall  high_grade_recall   auc  accuracy_mean_splits  accuracy_sd_splits  tn  fp  fn  tp
+kimianet 86     0.837          0.893              0.810 0.932                 0.837               0.076  25   3  11  47
+    uni2 86     0.942          0.893              0.966 0.983                 0.942               0.042  25   3   2  56
+
+Note: pooled AUC mixes 5 different models; per-split AUCs are cleaner.
+
+Paired comparison over 86 test cases
+  correct by both: 68, neither: 1
+  correct by kimianet only: 4, by uni2 only: 13
+  exact McNemar p-value (two-sided): 0.049
+  cases where only one encoder is correct:
+ case_id  true_label  p_hg_kimianet  p_hg_uni2
+      26           0       0.994766   0.009534
+      46           0       0.065127   0.986367
+      56           0       0.412485   0.615522
+      86           0       0.981137   0.065300
+      94           0       0.986088   0.018895
+      96           0       0.162880   0.869167
+      11           1       0.921507   0.380920
+      15           1       0.093795   0.999926
+      17           1       0.396112   0.996544
+      32           1       0.277813   0.701346
+      54           1       0.406617   0.999864
+      60           1       0.035409   0.999792
+      67           1       0.362955   0.999920
+      69           1       0.450445   0.995691
+      84           1       0.171981   0.999987
+      92           1       0.297210   0.846375
+      97           1       0.272103   0.986374

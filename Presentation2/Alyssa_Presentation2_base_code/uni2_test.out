@@ -1,0 +1,27 @@
+[INFO] patches_dir:      /projects/e32998/patches_benign_split
+[INFO] embeddings_dir:   /home/npg2887/patch_embeddings_UNI2
+[INFO] uni2_ckpt:        /home/npg2887/uni2_weights/pytorch_model.bin
+[INFO] device:           cpu
+[INFO] batch_size:       128
+[INFO] num_workers:      2
+[INFO] overwrite:        False
+[INFO] dtype:            fp16
+[INFO] min_patch_size:   32x32
+[INFO] log_every:        5
+[INFO] resizing:         snap to multiple of 14
+[INFO] forward pass:     one patch at a time
+[INFO] Found 20 PNG files.
+[INFO] UNI2 parameters:  681M
+[PROGRESS] step=1 seen=20/20 saved=19 skipped_existing=0 skipped_bad=0 skipped_too_small=1 rate=0.24 patches/sec ETA=0s
+[DONE]
+[SUMMARY] total_png=20
+[SUMMARY] saved=19
+[SUMMARY] skipped_existing=0
+[SUMMARY] skipped_bad=0
+[SUMMARY] skipped_too_small=1
+[SUMMARY] embeddings_dir=/home/npg2887/patch_embeddings_UNI2
+[SUMMARY] total_time=1m 25s
+Note: saved tensors are length 1536 (UNI2-h CLS token).
+Note: this version is typically slower than the resized batched version because
+      variable-size patches are forwarded one at a time instead of as a stacked batch.
+/home/npg2887/patch_embeddings_UNI2/case_038_match_10_h&e_patch0.pt torch.Size([1536]) torch.float16

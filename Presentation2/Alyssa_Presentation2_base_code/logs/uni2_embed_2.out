@@ -1,0 +1,58 @@
+[INFO] patches_dir:      /projects/e32998/patches_benign_split
+[INFO] embeddings_dir:   /home/npg2887/patch_embeddings_UNI2
+[INFO] uni2_ckpt:        /home/npg2887/uni2_weights/pytorch_model.bin
+[INFO] device:           cuda
+[INFO] batch_size:       128
+[INFO] num_workers:      6
+[INFO] overwrite:        False
+[INFO] dtype:            fp16
+[INFO] min_patch_size:   32x32
+[INFO] log_every:        5
+[INFO] resizing:         snap to multiple of 14
+[INFO] forward pass:     one patch at a time
+[INFO] Found 20907 PNG files.
+[INFO] UNI2 parameters:  681M
+[PROGRESS] step=5 seen=640/20907 saved=631 skipped_existing=4 skipped_bad=0 skipped_too_small=5 rate=14.37 patches/sec ETA=23m 30s
+[PROGRESS] step=10 seen=1280/20907 saved=1271 skipped_existing=4 skipped_bad=0 skipped_too_small=5 rate=19.77 patches/sec ETA=16m 32s
+[PROGRESS] step=15 seen=1920/20907 saved=1890 skipped_existing=4 skipped_bad=0 skipped_too_small=26 rate=19.87 patches/sec ETA=15m 55s
+[PROGRESS] step=20 seen=2560/20907 saved=2530 skipped_existing=4 skipped_bad=0 skipped_too_small=26 rate=19.75 patches/sec ETA=15m 29s
+[PROGRESS] step=25 seen=3200/20907 saved=3167 skipped_existing=4 skipped_bad=0 skipped_too_small=29 rate=20.04 patches/sec ETA=14m 43s
+[PROGRESS] step=30 seen=3840/20907 saved=3788 skipped_existing=4 skipped_bad=0 skipped_too_small=48 rate=19.19 patches/sec ETA=14m 49s
+[PROGRESS] step=35 seen=4480/20907 saved=4419 skipped_existing=4 skipped_bad=0 skipped_too_small=57 rate=20.31 patches/sec ETA=13m 28s
+[PROGRESS] step=40 seen=5120/20907 saved=5059 skipped_existing=4 skipped_bad=0 skipped_too_small=57 rate=21.13 patches/sec ETA=12m 27s
+[PROGRESS] step=45 seen=5760/20907 saved=5695 skipped_existing=4 skipped_bad=0 skipped_too_small=61 rate=21.26 patches/sec ETA=11m 52s
+[PROGRESS] step=50 seen=6400/20907 saved=6333 skipped_existing=4 skipped_bad=0 skipped_too_small=63 rate=21.10 patches/sec ETA=11m 27s
+[PROGRESS] step=55 seen=7040/20907 saved=6949 skipped_existing=4 skipped_bad=0 skipped_too_small=87 rate=21.74 patches/sec ETA=10m 37s
+[PROGRESS] step=60 seen=7680/20907 saved=7587 skipped_existing=4 skipped_bad=0 skipped_too_small=89 rate=22.14 patches/sec ETA=9m 57s
+[PROGRESS] step=65 seen=8320/20907 saved=8211 skipped_existing=4 skipped_bad=0 skipped_too_small=105 rate=22.29 patches/sec ETA=9m 24s
+[PROGRESS] step=70 seen=8960/20907 saved=8850 skipped_existing=4 skipped_bad=0 skipped_too_small=106 rate=22.57 patches/sec ETA=8m 49s
+[PROGRESS] step=75 seen=9600/20907 saved=9482 skipped_existing=4 skipped_bad=0 skipped_too_small=114 rate=22.85 patches/sec ETA=8m 14s
+[PROGRESS] step=80 seen=10240/20907 saved=10092 skipped_existing=4 skipped_bad=0 skipped_too_small=144 rate=23.57 patches/sec ETA=7m 32s
+[PROGRESS] step=85 seen=10880/20907 saved=10730 skipped_existing=4 skipped_bad=0 skipped_too_small=146 rate=23.50 patches/sec ETA=7m 6s
+[PROGRESS] step=90 seen=11520/20907 saved=11368 skipped_existing=4 skipped_bad=0 skipped_too_small=148 rate=23.83 patches/sec ETA=6m 33s
+[PROGRESS] step=95 seen=12160/20907 saved=12007 skipped_existing=4 skipped_bad=0 skipped_too_small=149 rate=24.25 patches/sec ETA=6m 0s
+[PROGRESS] step=100 seen=12800/20907 saved=12647 skipped_existing=4 skipped_bad=0 skipped_too_small=149 rate=24.27 patches/sec ETA=5m 34s
+[PROGRESS] step=105 seen=13440/20907 saved=13180 skipped_existing=4 skipped_bad=0 skipped_too_small=256 rate=24.15 patches/sec ETA=5m 9s
+[PROGRESS] step=110 seen=14080/20907 saved=13808 skipped_existing=4 skipped_bad=0 skipped_too_small=268 rate=24.29 patches/sec ETA=4m 41s
+[PROGRESS] step=115 seen=14720/20907 saved=14394 skipped_existing=4 skipped_bad=0 skipped_too_small=322 rate=24.56 patches/sec ETA=4m 11s
+[PROGRESS] step=120 seen=15360/20907 saved=14994 skipped_existing=4 skipped_bad=0 skipped_too_small=362 rate=24.77 patches/sec ETA=3m 43s
+[PROGRESS] step=125 seen=16000/20907 saved=15536 skipped_existing=4 skipped_bad=0 skipped_too_small=460 rate=25.09 patches/sec ETA=3m 15s
+[PROGRESS] step=130 seen=16640/20907 saved=16172 skipped_existing=4 skipped_bad=0 skipped_too_small=464 rate=25.29 patches/sec ETA=2m 48s
+[PROGRESS] step=135 seen=17280/20907 saved=16805 skipped_existing=4 skipped_bad=0 skipped_too_small=471 rate=25.31 patches/sec ETA=2m 23s
+[PROGRESS] step=140 seen=17920/20907 saved=17420 skipped_existing=4 skipped_bad=0 skipped_too_small=496 rate=25.48 patches/sec ETA=1m 57s
+[PROGRESS] step=145 seen=18560/20907 saved=18055 skipped_existing=4 skipped_bad=0 skipped_too_small=501 rate=25.50 patches/sec ETA=1m 32s
+[PROGRESS] step=150 seen=19200/20907 saved=18695 skipped_existing=4 skipped_bad=0 skipped_too_small=501 rate=25.26 patches/sec ETA=1m 7s
+[PROGRESS] step=155 seen=19840/20907 saved=19335 skipped_existing=4 skipped_bad=0 skipped_too_small=501 rate=25.42 patches/sec ETA=41s
+[PROGRESS] step=160 seen=20480/20907 saved=19974 skipped_existing=4 skipped_bad=0 skipped_too_small=502 rate=25.49 patches/sec ETA=16s
+[PROGRESS] step=164 seen=20907/20907 saved=20400 skipped_existing=4 skipped_bad=0 skipped_too_small=503 rate=25.49 patches/sec ETA=0s
+[DONE]
+[SUMMARY] total_png=20907
+[SUMMARY] saved=20400
+[SUMMARY] skipped_existing=4
+[SUMMARY] skipped_bad=0
+[SUMMARY] skipped_too_small=503
+[SUMMARY] embeddings_dir=/home/npg2887/patch_embeddings_UNI2
+[SUMMARY] total_time=13m 40s
+Note: saved tensors are length 1536 (UNI2-h CLS token).
+Note: this version is typically slower than the resized batched version because
+      variable-size patches are forwarded one at a time instead of as a stacked batch.

@@ -3,3 +3,9 @@ Thumbs.db
 desktop.ini
 __pycache__
 Presentation2/Lily_Presentation2_code/run_20261105_131639/checkpoints/
+*.pth
+*.tif
+*.tiff
+*.pth
+*.tif
+*.tiff
