@@ -1,0 +1,7 @@
+experiment,n_test_cases,accuracy,benign_recall,high_grade_recall,best_epoch,epochs_trained,first_epoch_train_loss_below_0.05,run_folder
+baseline,18,1.0,1.0,1.0,10,18,4,/projects/e32998/STAT390_Fall2026/Team2_TheConsultancy/P3_analyst1/runs_93cases/split01/baseline/run_20261119_111529
+emb128,18,0.9444444444444444,0.8571428571428571,1.0,24,29,7,/projects/e32998/STAT390_Fall2026/Team2_TheConsultancy/P3_analyst1/runs_93cases/split01/emb128/run_20261119_113755
+emb256,18,0.9444444444444444,0.8571428571428571,1.0,27,27,5,/projects/e32998/STAT390_Fall2026/Team2_TheConsultancy/P3_analyst1/runs_93cases/split01/emb256/run_20261119_111529
+emb64,18,0.8888888888888888,0.7142857142857143,1.0,20,28,9,/projects/e32998/STAT390_Fall2026/Team2_TheConsultancy/P3_analyst1/runs_93cases/split01/emb64/run_20261119_114915
+slice03,18,1.0,1.0,1.0,6,14,11,/projects/e32998/STAT390_Fall2026/Team2_TheConsultancy/P3_analyst1/runs_93cases/split01/slice03/run_20261119_120027
+stain03,18,1.0,1.0,1.0,15,23,8,/projects/e32998/STAT390_Fall2026/Team2_TheConsultancy/P3_analyst1/runs_93cases/split01/stain03/run_20261119_114915
