@@ -1,0 +1,17 @@
+=== Folder checked: /projects/e32998/STAT390_Fall2026/Team5_TheWildcards/patch_embeddings_UNI2
+Embedding files:            81627
+Patches in patch_images:    89002
+Files for new case 102:     0
+Files for new case 008:     0
+
+=== Recompute test (check_team5_embeddings.py): cosine similarity with the saved file
+patch                                                 size  cos native   cos 224
+case_96_match_1_h&e_patch5                        101x101       0.6704    1.0000
+case_052_match_1_melan_patch108                   308x308       0.9521    1.0000
+case_100_match_1_melan_patch170                   183x183       0.9456    1.0000
+case_87_match_1_melan_patch312                    200x200       0.9698    1.0000
+case_50_match_2_melan_patch66                     192x191       0.9263    1.0000
+case_110_unmatched_2_melan_patch107               108x107       0.6986    1.0000
+
+Best match: native 0 / 224 6 of 6 patches
+A method matches if its cosines are ~0.999-1.000.
